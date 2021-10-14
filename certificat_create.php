@@ -107,6 +107,32 @@ $text_vert2 = $input['text_vert2'];
 $text_vert3 = $input['text_vert3'];
 
 
+	
+"text1":"ФИО",
+"text2":"Сертификат № TRBA000101WHM",
+"text3":"«Воронки продаж в мессенджерах»",
+"userId":"{{ userId }}",
+"link_main_img":"https://docs.google.com/uc?id=1SJp36buuCtUNsxeYL6lWb80mFfLuEzQW",
+"full_url":"https://github.com/kristylym/-ertificat",
+"smart_token":"{{ 2073316363:AAHO9KsO2hBlR-pBUd9V5IGz635pojKth0U }}",
+"text_vert1":"342",
+"text_vert2":"150",
+"text_vert3":"270",
+"font_size1":"24",
+"font_size2":"12",
+"font_size3":"18",
+"font_1_color1":"100",
+"font_1_color2":"0",
+"font_1_color3":"0",
+"font_2_color1":"50",
+"font_2_color2":"50",
+"font_2_color3":"50",
+"font_3_color1":"50",
+"font_3_color2":"50",
+"font_3_color3":"50"
+}
+
+
 
 
 /*
