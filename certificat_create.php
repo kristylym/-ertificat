@@ -110,11 +110,11 @@ $text_vert3 = $input['text_vert3'];
 {	
 "text1":"ФИО",
 "text2":"Сертификат № TRBA000101WHM",
-"text3":"«Воронки продаж в мессенджерах»",
+"text3":"Воронки продаж в мессенджерах",
 "userId":"{{ userId }}",
 "link_main_img":"https://docs.google.com/uc?id=1SJp36buuCtUNsxeYL6lWb80mFfLuEzQW",
 "full_url":"https://github.com/kristylym/-ertificat",
-"smart_token":"{{ 2073316363:AAHO9KsO2hBlR-pBUd9V5IGz635pojKth0U }}",
+"smart_token":"i3YxGE2ICTdMG47El8Y7ipcH9bC3uH5IQfete8W4DchSOsiwfcUvhMVuffc5",
 "text_vert1":"342",
 "text_vert2":"150",
 "text_vert3":"270",
