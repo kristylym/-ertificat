@@ -1,0 +1,278 @@
+<?php
+// ver 1.0 - 05.04.21
+
+ini_set('max_execution_time', '1700');
+set_time_limit(1700);
+
+
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST');
+header('Access-Control-Allow-Headers: application/json');
+
+
+http_response_code(200);
+
+global $globals;
+
+
+
+
+
+/////////////////////////////////////////////////
+////////////  D A T A  //////////////////////////
+/////////////////////////////////////////////////
+
+
+
+/////////////////////////////////////////////////
+////////////  F U N K T I O N S  /////////////////
+/////////////////////////////////////////////////
+
+///////////////////////////////
+
+
+
+function logfile(){ // записывает информацию в лог файл
+global $globals;
+
+$filename = 'log_botsend.txt';
+
+file_put_contents($filename, date('Y-m-d H:i:s') . PHP_EOL, FILE_APPEND);
+foreach($globals['log'] as $value){
+file_put_contents($filename, $value . PHP_EOL, FILE_APPEND);
+}
+file_put_contents($filename, '-------------' . PHP_EOL, FILE_APPEND);
+
+
+}
+
+
+//**********************************
+
+
+
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+
+
+    $inputJSON = file_get_contents('php://input');
+    $input = json_decode($inputJSON, TRUE); //convert JSON into array
+    
+
+if($input['photo']) {
+
+
+$link_main_img = $input['link_main_img'];
+$text = $input['fullName'];
+$filename = $input['photo'];
+$userid = $input['userId'];
+
+$BOT_TOKEN = $input['bottoken'];
+$chat_id = $input['chat_id'];
+
+$new_width = $input['new_width'];
+$new_height = $input['new_height'];
+
+$font_size = $input['font_size'];
+$font_gor = $input['font_gor'];
+$font_vert = $input['font_vert'];
+
+$font_color1 = $input['font_color1'];
+$font_color2 = $input['font_color2'];
+$font_color3 = $input['font_color3'];
+
+$transfer_x = $input['photo_gor'];
+$transfer_y = $input['photo_vert'];
+
+
+
+$date = date_create();
+$time = date_timestamp_get($date);
+
+/*
+{
+"link_main_img":"https://docs.google.com/uc?id=1zqv6yGpy8SFdzYlUJQywQ6LKozVss1sT",
+"fullName":"{{ fullName }}",
+"photo":"{{ photo }}",
+"userId":"{{ userId }}",
+"bottoken":"1655789498:AAHUf_Gm58dCyIaQBuS3rT2tD0qlccfLN4I",
+"chat_id":"285419619",
+"new_width":"210",
+"new_height":"210",
+"font_size":"24",
+"font_gor":"235",
+"font_vert":"50",
+"font_color1":"20",
+"font_color2":"20",
+"font_color3":"20",
+"photo_gor":"15",
+"photo_vert":"15"
+
+}
+
+*/
+
+/*
+{
+"link_main_img":"https://docs.google.com/uc?id=1zqv6yGpy8SFdzYlUJQywQ6LKozVss1sT",
+"fullName":"{{ fullName }}",
+"photo":"{{ photo }}",
+"userId":"{{ userId }}",
+"bottoken":"940698048:AAF-ilOvTo3siTRCX_70X-npACXYPKV0A6s",
+"chat_id":"-1001492233504",
+"new_width":"210",
+"new_height":"210",
+"font_size":"28",
+"font_gor":"235",
+"font_vert":"50",
+"font_color1":"20",
+"font_color2":"20",
+"font_color3":"20",
+"photo_gor":"15",
+"photo_vert":"15"
+
+}
+*/
+
+
+
+//*************** umenshaem photo
+
+
+
+
+// получение новых размеров
+list($width, $height) = getimagesize($filename);
+//$new_width = 210;
+//$new_height = 210;
+
+// ресэмплирование
+$image_p = imagecreatetruecolor($new_width, $new_height);
+$image = imagecreatefromjpeg($filename);
+imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+
+
+header('Content-Type: image/jpeg');
+$new_photo = imagejpeg($image_p, $userid."_".$time.".jpg", 100);
+
+
+
+//------------
+
+//$src = imagecreatefromjpeg('http://www.funk.eu/wp-content/uploads/_category_icons/Cat_Small_PHP.jpg');
+$main_img = imagecreatefromjpeg($link_main_img);
+$src = imagecreatefromjpeg($userid."_".$time.".jpg");
+//$main_img = imagecreatefromjpeg('http://graphics8.nytimes.com/images/2008/04/20/magazine/20learn-600.jpg');
+
+
+//*********************
+// определяем цвет, в RGB
+$color = imagecolorallocate($main_img, $font_color1, $font_color2, $font_color3);
+//$color = imagecolorallocate($main_img, 20, 20, 20);
+ // указываем путь к шрифту
+$font = 'Montserrat-SemiBold.ttf';
+imagettftext($main_img, $font_size, 0, $font_gor, $font_vert, $color, $font, $text);
+//imagettftext($main_img, 24, 0, 235, 50, $color, $font, $text);
+// 24 - размер шрифта
+// 0 - угол поворота
+// 120 - смещение по горизонтали
+// 50 - смещение по вертикали
+//*********************
+
+
+
+
+$w_src = imagesx($src);
+$h_src = imagesy($src);
+$w_dest = imagesx($main_img);
+$h_dest = imagesy($main_img);
+ 
+//$transfer_x = 15;
+//$transfer_y = 15;
+
+
+$color=ImageColorAllocate($pic, 250, 0, 0); //получаем идентификатор цвета
+ 
+imagecopyresampled($main_img, $src, $transfer_x, $transfer_y, 0, 0, $w_src, $h_src, $w_src, $h_src);
+header('Content-Type: image/jpeg');
+imagejpeg($main_img, $userid."_".$time."_new.jpg", 100);
+imagedestroy($main_img);
+imagedestroy($src);
+
+
+
+
+/*
+//*-*-*-*-*-*--*-*-*-*-*-* otpravka boto v lichu soobscheniya
+
+define('BOTAPI', 'https://api.telegram.org/bot' . $BOT_TOKEN . '/');
+		
+$message = '';  
+  
+    $data = [
+        'chat_id' => $chat_id,
+        'text' => '👍',
+        'caption' => $message
+    ];
+    $ch = curl_init(BOTAPI . 'sendmessage');
+    curl_setopt($ch, CURLOPT_HEADER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+    curl_exec($ch);
+    curl_close($ch);
+
+//*-*-*-*-*-*--*-*-*-*-*-*
+*/
+
+
+//*-*-*-*-*-*--*-*-*-*-*-* otpravka boto v lichu
+
+    //$BOT_TOKEN = '1655789498:AAHUf_Gm58dCyIaQBuS3rT2tD0qlccfLN4I';
+    //$chat_id = '285419619';
+    $filePath = $userid."_".$time."_new.jpg";
+    define('BOTAPI', 'https://api.telegram.org/bot' . $BOT_TOKEN . '/');
+    $cfile = new CURLFile(realpath($filePath));
+      // $cfile = 'https://api.trizmark.pro/test/viv1.mp3';
+		// $cfile = 'https://docs.google.com/uc?id=1G2_kTQki6Qm_J9o4rdC3DAgi4hb7r-wh';
+		
+$message = '';  
+  
+    $data = [
+        'chat_id' => $chat_id,
+        'photo' => $cfile,
+        'caption' => $message
+    ];
+    $ch = curl_init(BOTAPI . 'sendphoto');
+    curl_setopt($ch, CURLOPT_HEADER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+    curl_exec($ch);
+    curl_close($ch);
+
+//*-*-*-*-*-*--*-*-*-*-*-*
+
+
+
+unlink($userid."_".$time."_new.jpg");
+unlink($userid."_".$time.".jpg");
+
+
+}
+
+//*-*-*-*-*-*--*-*-*-*-*-* otpravka boto v lichu
+
+	$globals['log'][] = 'Оплата успешно';
+
+
+
+
+//logfile();
+
+
+
+?>
