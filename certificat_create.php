@@ -107,7 +107,7 @@ $text_vert2 = $input['text_vert2'];
 $text_vert3 = $input['text_vert3'];
 
 
-	
+{	
 "text1":"ФИО",
 "text2":"Сертификат № TRBA000101WHM",
 "text3":"«Воронки продаж в мессенджерах»",
