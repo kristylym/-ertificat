@@ -110,7 +110,7 @@ $text_vert3 = $input['text_vert3'];
 
 
 {
-"text1":"{{ ФИО }}",
+"text1":"ФИО",
 "text2":"Баллы",
 "text3":"Воронки продаж в мессенджерах",
 "userId":"{{ userId }}",
