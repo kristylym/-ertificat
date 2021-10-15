@@ -109,30 +109,30 @@ $text_vert3 = $input['text_vert3'];
 
 
 
-{
-"text1":"ФИО",
-"text2":"Баллы",
-"text3":"Воронки продаж в мессенджерах",
-"userId":"{{ userId }}",
-"link_main_img":"https://drive.google.com/uc?id=1csbpIszdxxsGLGIUOdDxjNMxm5pT1xMp",
-"full_url":"https://github.com/kristylym/-ertificat",
-"smart_token":"i3YxGE2ICTdMG47El8Y7ipcH9bC3uH5IQfete8W4DchSOsiwfcUvhMVuffc5",
-"text_vert1":"342",
-"text_vert2":"150",
-"text_vert3":"270",
-"font_size1":"24",
-"font_size2":"12",
-"font_size3":"18",
-"font_1_color1":"100",
-"font_1_color2":"0",
-"font_1_color3":"0",
-"font_2_color1":"50",
-"font_2_color2":"50",
-"font_2_color3":"50",
-"font_3_color1":"50",
-"font_3_color2":"50",
-"font_3_color3":"50"
-}
+// {
+// "text1":"ФИО",
+// "text2":"Баллы",
+// "text3":"Воронки продаж в мессенджерах",
+// "userId":"{{ userId }}",
+// "link_main_img":"https://drive.google.com/uc?id=1csbpIszdxxsGLGIUOdDxjNMxm5pT1xMp",
+// "full_url":"https://github.com/kristylym/-ertificat",
+// "smart_token":"i3YxGE2ICTdMG47El8Y7ipcH9bC3uH5IQfete8W4DchSOsiwfcUvhMVuffc5",
+// "text_vert1":"342",
+// "text_vert2":"150",
+// "text_vert3":"270",
+// "font_size1":"24",
+// "font_size2":"12",
+// "font_size3":"18",
+// "font_1_color1":"100",
+// "font_1_color2":"0",
+// "font_1_color3":"0",
+// "font_2_color1":"50",
+// "font_2_color2":"50",
+// "font_2_color3":"50",
+// "font_3_color1":"50",
+// "font_3_color2":"50",
+// "font_3_color3":"50"
+// }
 
 
 
